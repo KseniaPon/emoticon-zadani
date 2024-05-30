@@ -1,19 +1,23 @@
+import { useContext } from 'react';
 import {eyesData, Eyes} from '../../data';
+import { SettingContext } from '../../context/setting-context';
 
 const EyesSelector:React.FC = () => {
+	const { eyes, changeEyes } = useContext(SettingContext)
 
 	const handleClick = (item:Eyes) => {
-		console.log('eyes', item.id);
+		console.log('eyes', item.id)
+		changeEyes(item.id)
 	}
 
 	return (
 		<div className="items">
-			{eyesData.map(eyes =>
+			{eyesData.map(eye =>
 				<img
-					className='item'
-					key={eyes.id}
-					src={eyes.image}
-					onClick={() => { handleClick(eyes) }}
+					className={(eyes) === eye.id ? 'item active' : 'item'}
+					key={eye.id}
+					src={eye.image}
+					onClick={() => { handleClick(eye) }}
 					/>
 			)}
 		</div>

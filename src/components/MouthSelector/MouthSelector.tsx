@@ -1,19 +1,24 @@
+import { useContext } from 'react';
 import {mouthData, Mouth} from '../../data';
+import { SettingContext } from '../../context/setting-context';
 
 const MouthSelector:React.FC = () => {
+	
+	const { mouth, changeMouth } = useContext(SettingContext)
 
 	const handleClick = (item:Mouth) => {
-		console.log('mouth', item.id);
+		console.log('mouth', item.id)
+		changeMouth(item.id)
 	}
 
 	return (
 		<div className="items">
-			{mouthData.map(mouth =>
+			{mouthData.map(m =>
 				<img
-					className='item'
-					key={mouth.id}
-					src={mouth.image}
-					onClick={() => { handleClick(mouth) }}
+					className={mouth === m.id ? 'item active' : 'item'}
+					key={m.id}
+					src={m.image}
+					onClick={() => { handleClick(m) }}
 					/>
 			)}
 		</div>

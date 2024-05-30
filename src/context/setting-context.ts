@@ -6,8 +6,18 @@ export interface SettingContextData {
     color: number;
 }
 
-export const SettingContext = createContext<SettingContextData>({
+export interface SettingData extends SettingContextData {
+    changeEyes: (eyes: number) => void;
+    changeMouth: (mouth: number) => void;
+    changeColor: (color: number) => void;
+} 
+
+export const SettingContext = createContext<SettingData>({
         eyes: 1,
         mouth: 1,
-        color: 2
+        color: 2,
+        changeEyes: () => {},
+        changeMouth: () => {},
+        changeColor: () => {},
 })
+

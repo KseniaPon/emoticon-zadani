@@ -4,14 +4,26 @@ import { SettingContext, SettingContextData } from './context/setting-context';
 import { useState } from 'react';
 
 const App = () => {
-const [settings, setSettings] = useState<SettingContextData>({
-  eyes: 1,
-  mouth: 1,
-  color: 2
-})
+  const [settings, setSettings] = useState<SettingContextData>({
+    eyes: 2,
+    mouth: 1,
+    color: 2
+  })
+
+  const changeEyes = (eyes: number) => {
+    setSettings({...settings, eyes})
+  }
+
+  const changeMouth = (mouth: number) => {
+    setSettings({...settings, mouth})
+  }
+
+  const changeColor = (color: number) => {
+    setSettings({...settings, color})
+  }
 
   return (
-    <SettingContext.Provider value={settings}>
+    <SettingContext.Provider value={{...settings, changeEyes, changeMouth, changeColor}}>
       <div className="container">
         <header>
           <h1>Vytvoř si vlastní emotikon</h1>
